@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InscriptionActivity">
+
+    <TextView
+        android:id="@+id/inscrip_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/inscrip_title"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_inscrip"
+        android:layout_width="187dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inscrip_title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/firstname_inscrip"
+        android:layout_width="187dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/name_inscrip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/name_inscrip"
+        app:layout_constraintTop_toTopOf="@+id/name_inscrip">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/firstname" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mail_inscrip"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/firstname_inscrip"
+        app:layout_constraintStart_toStartOf="@+id/name_inscrip"
+        app:layout_constraintTop_toBottomOf="@+id/firstname_inscrip">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mail" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/birth_inscrip"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/mail_inscrip"
+        app:layout_constraintStart_toStartOf="@+id/mail_inscrip"
+        app:layout_constraintTop_toBottomOf="@+id/mail_inscrip" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/id_inscrip"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/birth_inscrip"
+        app:layout_constraintStart_toStartOf="@+id/birth_inscrip"
+        app:layout_constraintTop_toBottomOf="@+id/birth_inscrip">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/pass_inscrip"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/id_inscrip"
+        app:layout_constraintStart_toStartOf="@+id/id_inscrip"
+        app:layout_constraintTop_toBottomOf="@+id/id_inscrip" />
+
+    <ImageView
+        android:id="@+id/back_curve1"
+        android:layout_width="125dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/pass_inscrip"
+        app:layout_constraintTop_toBottomOf="@+id/pass_inscrip"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/back_curve2"
+        android:layout_width="125dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_curve1"
+        app:layout_constraintStart_toEndOf="@+id/back_curve1"
+        app:layout_constraintTop_toTopOf="@+id/back_curve1"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/back_curve3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_curve2"
+        app:layout_constraintEnd_toEndOf="@+id/pass_inscrip"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/back_curve2"
+        app:layout_constraintTop_toTopOf="@+id/back_curve2"
+        app:srcCompat="@drawable/logo" />
+</androidx.constraintlayout.widget.ConstraintLayout>

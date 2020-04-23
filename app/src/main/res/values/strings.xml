@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SmartShirtApp</string>
+    <string name="main_title">BONJOUR</string>
+    <string name="login_id">ID</string>
+    <string name="login_button">CONNEXION</string>
+    <string name="inscription_button">Créer un compte</string>
+    <string name="inscrip_title">Inscrivez-vous !</string>
+    <string name="name">Nom</string>
+    <string name="firstname">Prénom</string>
+    <string name="mail">Mail</string>
+    <string name="id">Identifiant</string>
+</resources>
