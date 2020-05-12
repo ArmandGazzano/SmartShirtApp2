@@ -7,10 +7,50 @@
     tools:context=".InscriptionActivity">
 
     <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/mail"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/mail"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Mot de passe"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/id" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Nom Prénom"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/inscrip_title" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Identifiant"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/id"
+        app:layout_constraintTop_toBottomOf="@+id/mail" />
+
+    <TextView
         android:id="@+id/inscrip_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:text="@string/inscrip_title"
         android:textAllCaps="false"
         android:textSize="18sp"
@@ -19,122 +59,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name_inscrip"
-        android:layout_width="187dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inscrip_title">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/firstname_inscrip"
-        android:layout_width="187dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/name_inscrip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/name_inscrip"
-        app:layout_constraintTop_toTopOf="@+id/name_inscrip">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/firstname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/firstname" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/mail_inscrip"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/firstname_inscrip"
-        app:layout_constraintStart_toStartOf="@+id/name_inscrip"
-        app:layout_constraintTop_toBottomOf="@+id/firstname_inscrip">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/mail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/mail" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/birth_inscrip"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/mail_inscrip"
-        app:layout_constraintStart_toStartOf="@+id/mail_inscrip"
-        app:layout_constraintTop_toBottomOf="@+id/mail_inscrip" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_inscrip"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/birth_inscrip"
-        app:layout_constraintStart_toStartOf="@+id/birth_inscrip"
-        app:layout_constraintTop_toBottomOf="@+id/birth_inscrip">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/id" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/pass_inscrip"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/id_inscrip"
-        app:layout_constraintStart_toStartOf="@+id/id_inscrip"
-        app:layout_constraintTop_toBottomOf="@+id/id_inscrip" />
-
-    <ImageView
-        android:id="@+id/back_curve1"
-        android:layout_width="125dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="21dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/pass_inscrip"
-        app:layout_constraintTop_toBottomOf="@+id/pass_inscrip"
-        app:srcCompat="@drawable/logo" />
-
     <ImageView
         android:id="@+id/back_curve2"
         android:layout_width="125dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/back_curve1"
-        app:layout_constraintStart_toEndOf="@+id/back_curve1"
-        app:layout_constraintTop_toTopOf="@+id/back_curve1"
+        android:layout_height="125dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         app:srcCompat="@drawable/logo" />
 
-    <ImageView
-        android:id="@+id/back_curve3"
+    <Button
+        android:id="@+id/validateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="valider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/id"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/back_curve2"
-        app:layout_constraintEnd_toEndOf="@+id/pass_inscrip"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/back_curve2"
-        app:layout_constraintTop_toTopOf="@+id/back_curve2"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <EditText
+        android:id="@+id/mail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
