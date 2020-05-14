@@ -47,7 +47,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
-        android:id="@+id/main_mdp"
+        android:id="@+id/login_mdp"
         android:layout_width="343dp"
         android:layout_height="46dp"
         android:layout_marginTop="16dp"

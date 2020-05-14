@@ -16,8 +16,6 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
 class InscriptionActivity : AppCompatActivity() {
-    private val GOOD_ID = "admin"
-    private val GOOD_PASSWORD = "123"
     private val KEY_ID = "id"
     private val KEY_PASSWORD = "pass"
     private val USER_PREFS = "user_prefs"
@@ -32,22 +30,15 @@ class InscriptionActivity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE)
 
-        val saveId = sharedPreferences.getString(KEY_ID, "")
-        val savedPassword = sharedPreferences.getString(KEY_PASSWORD, "")
-
-        if (saveId == GOOD_ID && savedPassword == GOOD_PASSWORD) {
-            goToHome()
+        validateButton.setOnClickListener {
+            val userId = id.text.toString()
+            val userPassword = password.text.toString()
+            saveCredentials(userId, userPassword)
+            sendEmail()
         }
 
-        validateButton.setOnClickListener {
-            val idUser = id.text.toString()
-            val passwordUser = password.text.toString()
-
-            if (idUser == GOOD_ID && passwordUser == GOOD_PASSWORD) {
-                saveCredentials(idUser, passwordUser)
-                goToHome()
-            }
-            sendEmail()
+        back_to_home.setOnClickListener {
+            goToHome()
         }
     }
 
