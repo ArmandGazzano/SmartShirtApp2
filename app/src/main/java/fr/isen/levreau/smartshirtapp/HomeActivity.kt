@@ -1,5 +1,6 @@
 package fr.isen.levreau.smartshirtapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -8,14 +9,13 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var slideViewPager: ViewPager
-    private lateinit var dotLayout: LinearLayout
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        slideViewPager = view_pager
-        dotLayout = dot_layout
+        sport_button.setOnClickListener {
+            val intent = Intent(this, SportActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
