@@ -8,6 +8,7 @@ import android.media.audiofx.DynamicsProcessing
 import android.os.Bundle
 import android.provider.ContactsContract.DisplayNameSources.EMAIL
 import android.provider.ContactsContract.Intents.Insert.EMAIL
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import fr.isen.levreau.smartshirtapp.Credentials.EMAIL
 import kotlinx.android.synthetic.main.activity_inscription.*
@@ -35,6 +36,7 @@ class InscriptionActivity : AppCompatActivity() {
             val userPassword = password.text.toString()
             saveCredentials(userId, userPassword)
             sendEmail()
+            Toast.makeText(this, "Identifiants incorrectes", Toast.LENGTH_SHORT).show()
         }
 
         back_to_home.setOnClickListener {

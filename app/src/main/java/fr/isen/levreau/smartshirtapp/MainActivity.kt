@@ -22,12 +22,16 @@ class MainActivity : AppCompatActivity() {
         val GOOD_ID = sharedPreferences.getString(KEY_ID, "")
         val GOOD_PASSWORD = sharedPreferences.getString(KEY_PASSWORD, "")
 
+        if (GOOD_ID?.isEmpty() != true && GOOD_PASSWORD?.isEmpty() != true) {
+            goToHome()
+        }
+
         login_button.setOnClickListener {
             val idUser = login_id.text.toString()
             val passwordUser = login_mdp.text.toString()
 
             if (idUser == GOOD_ID && passwordUser == GOOD_PASSWORD) {
-                val intent = Intent(this, HomeActivity::class.java) //f
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Identifiants incorrectes", Toast.LENGTH_SHORT).show()
@@ -38,5 +42,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, InscriptionActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun goToHome() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
     }
 }
