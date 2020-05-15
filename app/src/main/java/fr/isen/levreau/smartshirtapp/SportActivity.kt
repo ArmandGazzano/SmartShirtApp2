@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_sport.*
 import java.io.File
 import java.io.InputStream
+import java.util.*
 
 class SportActivity : AppCompatActivity() {
+
+    var data = arrayOf<Array<Int>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +19,7 @@ class SportActivity : AppCompatActivity() {
         readFromFile()
     }
 
-    fun readFromFile(){
+    private fun readFromFile(){
 
         var text = ""
 
@@ -28,7 +31,24 @@ class SportActivity : AppCompatActivity() {
         val lineList = mutableListOf<String>()
 
         inputStream.bufferedReader().useLines { lines -> lines.forEach { lineList.add(it)} }
-        lineList.forEach{text += it + "\n"}
-        excel.text = text
+        lineList.forEach{lineToTab(it)}
+        //excel.text = data.toString()
+    }
+
+    private fun lineToTab(string: String){
+        var array = arrayOf<Int>()
+        val s: Scanner = Scanner(string).useDelimiter("\\s*:\\s*")
+
+        /*var a = s.nextInt()
+        var b = s.nextInt()
+        var c = s.nextInt()*/
+
+        for (j in 0..2) {
+            array += s.nextInt()
+        }
+
+        println(array)
+        //println("$a / $b / $c")
+        data += array
     }
 }

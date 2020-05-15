@@ -3,8 +3,6 @@ package fr.isen.levreau.smartshirtapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -15,7 +13,9 @@ class HomeActivity : AppCompatActivity() {
 
         sport_button.setOnClickListener {
             val intent = Intent(this, SportActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
+            finish()
         }
     }
 }
