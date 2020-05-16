@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
 
         mItent.add(Intent(this, SportActivity::class.java))
         mItent.add(Intent(this, HomeActivity::class.java))
-        mItent.add(Intent(this, MainActivity::class.java))
+        mItent.add(Intent(this, SettingsActivity::class.java))
         mItent.add(Intent(this, SportActivity::class.java))
 
         recyclerView.layoutManager= LinearLayoutManager(this, HORIZONTAL, false)
