@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SportActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.9"
-        app:srcCompat="@drawable/t_shirt" />
-
     <TextView
         android:id="@+id/sport_title"
         android:layout_width="wrap_content"
@@ -32,19 +19,67 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintWidth_percent="0.9"
+        app:srcCompat="@drawable/t_shirt" />
+
+    <ImageView
+        android:id="@+id/bas_rouge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.95"
+        app:srcCompat="@android:drawable/ic_notification_overlay"
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/ep_g_gris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintHorizontal_bias="0.271"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.100000024"
-        app:srcCompat="@android:drawable/ic_notification_overlay" />
+        app:layout_constraintVertical_bias="0.1"
+        app:srcCompat="@android:drawable/presence_invisible" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/milieu_gris"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@android:drawable/presence_invisible" />
+
+    <ImageView
+        android:id="@+id/haut_gris"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.110000014"
+        app:srcCompat="@android:drawable/presence_invisible"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/ep_d_gris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
@@ -53,10 +88,36 @@
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.100000024"
-        app:srcCompat="@android:drawable/ic_notification_overlay" />
+        app:srcCompat="@android:drawable/presence_invisible" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/ep_g_rouge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.100000024"
+        app:srcCompat="@android:drawable/ic_notification_overlay"
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/ep_d_rouge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.100000024"
+        app:srcCompat="@android:drawable/ic_notification_overlay"
+        tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/haut_rouge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
@@ -64,20 +125,22 @@
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.110000014"
-        app:srcCompat="@android:drawable/ic_notification_overlay" />
+        app:srcCompat="@android:drawable/ic_notification_overlay"
+        tools:visibility="invisible" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/milieu_rouge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:srcCompat="@android:drawable/ic_notification_overlay" />
+        app:srcCompat="@android:drawable/ic_notification_overlay"
+        tools:visibility="invisible" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/bas_gris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
@@ -85,7 +148,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.95"
-        app:srcCompat="@android:drawable/ic_notification_overlay" />
+        app:srcCompat="@android:drawable/presence_invisible" />
 
     <TextView
         android:id="@+id/excel"
@@ -95,4 +158,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Simuler une séance"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/danger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ATTENTION"
+        android:textColor="#E30E0E"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61"
+        tools:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
