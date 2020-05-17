@@ -4,6 +4,7 @@ package fr.isen.levreau.smartshirtapp
 import android.bluetooth.*
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_bluetooth_details.*
@@ -106,6 +107,7 @@ class BluetoothDetails : AppCompatActivity() {
             )
             runOnUiThread {
                 detailsView.adapter?.notifyDataSetChanged()
+                Toast.makeText(applicationContext, characteristic.uuid.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }

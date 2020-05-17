@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
         mImage.add(R.drawable.suivi)
 
         mItent.add(Intent(this, SportActivity::class.java))
-        mItent.add(Intent(this, HomeActivity::class.java))
+        mItent.add(Intent(this, TestActivity::class.java))
         mItent.add(Intent(this, SettingsActivity::class.java))
         mItent.add(Intent(this, SportActivity::class.java))
 

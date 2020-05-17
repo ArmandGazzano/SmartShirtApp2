@@ -135,6 +135,7 @@ class BluetoothActivity : AppCompatActivity() {
     private fun onDeviceClicked(device: BluetoothDevice) {
         val intent = Intent(this, BluetoothDetails::class.java)
         intent.putExtra("ble_device", device)
+        Toast.makeText(this, device.address, Toast.LENGTH_SHORT).show()
         startActivity(intent)
     }
 
@@ -161,6 +162,6 @@ class BluetoothActivity : AppCompatActivity() {
 
     companion object {
         private const val SCAN_PERIOD: Long = 60000
-        private const val REQUEST_ENABLE_BT = 44
+        const val REQUEST_ENABLE_BT = 44
     }
 }

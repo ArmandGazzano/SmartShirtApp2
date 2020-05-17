@@ -36,6 +36,7 @@ class SportActivity : AppCompatActivity() {
     var b = 0
     var c = 0
     var count = 0
+    val lineList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +61,7 @@ class SportActivity : AppCompatActivity() {
         danger.visibility = View.INVISIBLE
 
         start.setOnClickListener {
-            //readFromFile()
+            readFromFile()
             main()
         }
     }
@@ -72,7 +73,7 @@ class SportActivity : AppCompatActivity() {
 
         val inputStream: InputStream = file.inputStream()
 
-        inputStream.bufferedReader().useLines { lines -> lines.forEach { lineToTab(it) } }
+        inputStream.bufferedReader().useLines { lines -> lines.forEach { lineList.add(it)} }
     }
 
     private fun lineToTab(string: String){
@@ -111,18 +112,22 @@ class SportActivity : AppCompatActivity() {
     }
 
     fun foo(): Flow<Int> = flow { // flow builder
-        for (i in 1..3) {
-            delay(100) // pretend we are doing something useful here
+        var i = 0
+        lineList.forEach {
+            println(lineList[i])
             emit(i) // emit next value
+            i++
         }
     }
 
     fun main() = runBlocking<Unit> {
+        var k = 0
         // Launch a concurrent coroutine to check if the main thread is blocked
         launch {
-            for (k in 1..3) {
+            lineList.forEach {
                 println("I'm not blocked $k")
-                delay(100)
+                //delay(100)
+                k++
             }
         }
         // Collect the flow
