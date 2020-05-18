@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BluetoothDetails2"></activity>
+        <activity android:name=".CompoteActivity"></activity>
+        <activity android:name=".FollowupActivity" />
+        <activity android:name=".CalibrationActivity" />
+        <activity android:name=".BluetoothDetails2" />
         <activity android:name=".TestActivity" />
         <activity android:name=".BluetoothActivity" />
         <activity android:name=".SettingsActivity" />

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val GOOD_PASSWORD = sharedPreferences.getString(KEY_PASSWORD, "")
 
         if (GOOD_ID?.isEmpty() != true && GOOD_PASSWORD?.isEmpty() != true) {
-            goToHome()
+            //goToHome()
         }
 
         login_button.setOnClickListener {

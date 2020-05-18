@@ -36,7 +36,12 @@ class InscriptionActivity : AppCompatActivity() {
             val userPassword = password.text.toString()
             saveCredentials(userId, userPassword)
             sendEmail()
-            Toast.makeText(this, "Identifiants incorrectes", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Bienvenue $userId", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+
         }
 
         back_to_home.setOnClickListener {
@@ -53,7 +58,7 @@ class InscriptionActivity : AppCompatActivity() {
 
     private fun goToHome() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()
     }

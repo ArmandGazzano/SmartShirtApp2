@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:visibility="visible">
+
+    <TextView
+        android:id="@+id/seance_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="SEANCE N°"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/num_seance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="__"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/seance_title"
+        app:layout_constraintStart_toEndOf="@+id/seance_title"
+        app:layout_constraintTop_toTopOf="@+id/seance_title" />
+
+    <ImageView
+        android:id="@+id/fleche_button"
+        android:layout_width="46dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/num_seance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/num_seance"
+        app:srcCompat="@android:drawable/ic_menu_more" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/expandableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#CCC6C6"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seance_title">
+
+        <TextView
+            android:id="@+id/tendance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="40dp"
+            android:text="Tendance : "
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nbFois_title" />
+
+        <ImageView
+            android:id="@+id/warning_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#BF3D3D"
+            app:layout_constraintBottom_toBottomOf="@+id/tendance_title"
+            app:layout_constraintEnd_toStartOf="@+id/tendance_title"
+            app:srcCompat="@android:drawable/ic_lock_idle_low_battery" />
+
+        <TextView
+            android:id="@+id/tendance_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Haut du dos "
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tendance_title"
+            app:layout_constraintStart_toStartOf="@+id/warning_image"
+            app:layout_constraintTop_toBottomOf="@+id/tendance_title"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/hautDos_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:text="Haut du dos : "
+            app:layout_constraintStart_toStartOf="@+id/nbFois_title"
+            app:layout_constraintTop_toBottomOf="@+id/nbFois_title" />
+
+        <TextView
+            android:id="@+id/nbFois_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Nombre de mauvais placements "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/centreDos_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Centre du dos : "
+            app:layout_constraintStart_toStartOf="@+id/hautDos_title"
+            app:layout_constraintTop_toBottomOf="@+id/hautDos_title" />
+
+        <TextView
+            android:id="@+id/basDos_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Bas du dos : "
+            app:layout_constraintStart_toStartOf="@+id/centreDos_title"
+            app:layout_constraintTop_toBottomOf="@+id/centreDos_title" />
+
+        <TextView
+            android:id="@+id/epGauche_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Epaule gauche : "
+            app:layout_constraintStart_toStartOf="@+id/basDos_title"
+            app:layout_constraintTop_toBottomOf="@+id/basDos_title" />
+
+        <TextView
+            android:id="@+id/epDroite_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="Epaule droite : "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/epGauche_title"
+            app:layout_constraintTop_toBottomOf="@+id/epGauche_title" />
+
+        <TextView
+            android:id="@+id/hautDos_nb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="__"
+            app:layout_constraintBottom_toBottomOf="@+id/hautDos_title"
+            app:layout_constraintEnd_toEndOf="@+id/centreDos_nb"
+            app:layout_constraintTop_toTopOf="@+id/hautDos_title" />
+
+        <TextView
+            android:id="@+id/centreDos_nb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="__"
+            app:layout_constraintBottom_toBottomOf="@+id/centreDos_title"
+            app:layout_constraintStart_toEndOf="@+id/centreDos_title"
+            app:layout_constraintTop_toTopOf="@+id/centreDos_title" />
+
+        <TextView
+            android:id="@+id/basDos_nb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="__"
+            app:layout_constraintBottom_toBottomOf="@+id/basDos_title"
+            app:layout_constraintEnd_toEndOf="@+id/centreDos_nb"
+            app:layout_constraintTop_toTopOf="@+id/basDos_title" />
+
+        <TextView
+            android:id="@+id/epG_nb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="__"
+            app:layout_constraintBottom_toBottomOf="@+id/epGauche_title"
+            app:layout_constraintEnd_toEndOf="@+id/basDos_nb"
+            app:layout_constraintTop_toTopOf="@+id/epGauche_title" />
+
+        <TextView
+            android:id="@+id/epD_nb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="__"
+            app:layout_constraintBottom_toBottomOf="@+id/epDroite_title"
+            app:layout_constraintEnd_toEndOf="@+id/epG_nb"
+            app:layout_constraintTop_toTopOf="@+id/epDroite_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,13 +40,6 @@ class SportActivity : AppCompatActivity() {
         })
         dialog.show()
 
-        bas_rouge.visibility = View.INVISIBLE
-        milieu_rouge.visibility = View.INVISIBLE
-        haut_rouge.visibility = View.INVISIBLE
-        ep_d_rouge.visibility = View.INVISIBLE
-        ep_g_rouge.visibility = View.INVISIBLE
-        danger.visibility = View.INVISIBLE
-
         commencer.setOnClickListener {
             readFromFile()
             main()
@@ -77,7 +70,7 @@ class SportActivity : AppCompatActivity() {
                 haut_rouge.visibility = View.VISIBLE
                 ep_d_rouge.visibility = View.VISIBLE
                 ep_g_rouge.visibility = View.VISIBLE
-                danger.visibility = View.VISIBLE
+                atten.visibility = View.VISIBLE
 
                 Toast.makeText(this, "ATTENTION MOUVEMENT DANGEREUX", Toast.LENGTH_SHORT).show()
                 count += 1

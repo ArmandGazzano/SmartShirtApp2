@@ -102,7 +102,7 @@ class TestActivity : AppCompatActivity() {
     }
 
     private fun onDeviceClicked(device: BluetoothDevice) {
-        val intent = Intent(this, BluetoothDetails::class.java)
+        val intent = Intent(this, BluetoothDetails2::class.java)
         intent.putExtra("ble_device", device)
         Toast.makeText(this, device.address, Toast.LENGTH_SHORT).show()
         startActivity(intent)

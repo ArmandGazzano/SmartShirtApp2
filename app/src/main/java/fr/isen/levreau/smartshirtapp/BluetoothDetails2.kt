@@ -8,26 +8,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.gazzano.androidtoolbox.BluetoothDetailsAdapter
-import kotlinx.android.synthetic.main.activity_bluetooth_details.*
-import kotlinx.android.synthetic.main.activity_bluetooth_details.bas_gris
-import kotlinx.android.synthetic.main.activity_bluetooth_details.bas_rouge
-import kotlinx.android.synthetic.main.activity_bluetooth_details.cache
-import kotlinx.android.synthetic.main.activity_bluetooth_details.commencer
-import kotlinx.android.synthetic.main.activity_bluetooth_details.connectionState
-import kotlinx.android.synthetic.main.activity_bluetooth_details.danger
-import kotlinx.android.synthetic.main.activity_bluetooth_details.detailsView
-import kotlinx.android.synthetic.main.activity_bluetooth_details.ep_d_gris
-import kotlinx.android.synthetic.main.activity_bluetooth_details.ep_d_rouge
-import kotlinx.android.synthetic.main.activity_bluetooth_details.ep_g_gris
-import kotlinx.android.synthetic.main.activity_bluetooth_details.ep_g_rouge
-import kotlinx.android.synthetic.main.activity_bluetooth_details.haut_gris
-import kotlinx.android.synthetic.main.activity_bluetooth_details.haut_rouge
-import kotlinx.android.synthetic.main.activity_bluetooth_details.milieu_gris
-import kotlinx.android.synthetic.main.activity_bluetooth_details.milieu_rouge
-import kotlinx.android.synthetic.main.activity_bluetooth_details.nameDevice
-import kotlinx.android.synthetic.main.activity_bluetooth_details.tshirt
 import kotlinx.android.synthetic.main.activity_bluetooth_details2.*
 import java.util.*
+import kotlin.math.abs
 
 
 class BluetoothDetails2 : AppCompatActivity() {
@@ -45,30 +28,19 @@ class BluetoothDetails2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bluetooth_details)
-        danger.visibility = View.INVISIBLE
+        setContentView(R.layout.activity_bluetooth_details2)
 
         cache.visibility = View.INVISIBLE
-        tshirt.visibility = View.INVISIBLE
-        haut_gris.visibility = View.INVISIBLE
-        haut_rouge.visibility = View.INVISIBLE
-        bas_gris.visibility = View.INVISIBLE
-        bas_rouge.visibility = View.INVISIBLE
-        ep_d_gris.visibility = View.INVISIBLE
-        ep_d_rouge.visibility = View.INVISIBLE
-        ep_g_gris.visibility = View.INVISIBLE
-        ep_g_rouge.visibility = View.INVISIBLE
-        milieu_gris.visibility = View.INVISIBLE
-        milieu_rouge.visibility = View.INVISIBLE
-        danger.visibility = View.INVISIBLE
-        rouge.visibility = View.INVISIBLE
+        t_shirt.visibility = View.INVISIBLE
+        points.visibility = View.INVISIBLE
+        atten.visibility = View.INVISIBLE
 
         val device: BluetoothDevice = intent.getParcelableExtra("ble_device")
         nameDevice.text = device.name
         bluetoothGatt = device.connectGatt(this, true, gattCallback)
 
         commencer.setOnClickListener {
-            tshirt.visibility = View.VISIBLE
+            t_shirt.visibility = View.VISIBLE
             cache.visibility = View.VISIBLE
         }
     }
@@ -161,32 +133,32 @@ class BluetoothDetails2 : AppCompatActivity() {
             count += 1
             when (characteristic.uuid) {
                 UUID.fromString("466c9abc-f593-11e8-8eb2-f2801f1b9fd1") -> {
-                    a1 = dec - a
+                    a1 = abs(dec) - abs(a)
                     a = dec
                 }
                 UUID.fromString("466c1268-f593-11e8-8eb2-f2801f1b9fd1") -> {
-                    a2 = dec - b
+                    a2 = abs(dec) - abs(b)
                     b = dec
                 }
                 UUID.fromString("466c3256-f593-11e8-8eb2-f2801f1b9fd1") -> {
-                    a3 = dec - c
+                    a3 = abs(dec) - abs(c)
                     c = dec
                 }
             }
             println("$a1 , $a2 , $a3")
 
-            if (a1 > 50 || a2 > 50 || a3 > 260){
+            if (a1 > 15 || a2 > 15 || a3 > 15){
                 var t = 0
-                danger.visibility = View.VISIBLE
-                rouge.visibility = View.VISIBLE
+                //atten.visibility = View.VISIBLE
+                //points.visibility = View.VISIBLE
 
                 do {
                     t += 1
                     println("attention")
                 } while (t < 100000)
             }
-            danger.visibility = View.INVISIBLE
-            rouge.visibility = View.INVISIBLE
+            //atten.visibility = View.INVISIBLE
+            points.visibility = View.INVISIBLE
             runOnUiThread {
                 detailsView.adapter?.notifyDataSetChanged()
             }

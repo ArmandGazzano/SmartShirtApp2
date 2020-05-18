@@ -170,7 +170,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/danger"
+        android:id="@+id/atten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ATTENTION"

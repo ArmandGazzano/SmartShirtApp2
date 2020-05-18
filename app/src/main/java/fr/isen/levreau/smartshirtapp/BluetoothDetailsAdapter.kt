@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothGattDescriptor
 import android.content.Context
 import android.content.DialogInterface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
@@ -140,11 +138,11 @@ class BluetoothDetailsAdapter(
         holder.characteristicName.text = name
         holder.properties.text = "Proprietés : ${proprieties(characteristic.properties)}"
 
-
-        if (characteristic.uuid == UUID.fromString("466c9abc-f593-11e8-8eb2-f2801f1b9fd1") && notifier){
-            holder.valueBle.text =  "Valeur : ${byteArrayToHexString(characteristic.value)}"
-        } else if (characteristic.value != null) {
-            holder.valueBle.text =  "Valeur : ${String (characteristic.value)}"
+        if (characteristic.value != null) {
+            val hex = characteristic.value.joinToString("") { byte -> "%02x".format(byte)}.toUpperCase(Locale.FRANCE)
+            //val value = "Valeur : ${String(it)} Hex : 0x$hex"
+            val dec = Integer.parseInt(hex,16)
+            holder.valueBle.text =  "Valeur : $dec"
         } else {
             holder.valueBle.text =  "Valeur : "
         }
@@ -164,7 +162,7 @@ class BluetoothDetailsAdapter(
             dialog.setNegativeButton("Annuler", DialogInterface.OnClickListener { dialog, which ->  })
             dialog.setPositiveButton("Valider", DialogInterface.OnClickListener {
                     _, _ ->
-                val text = editView.valueText.text.toString()
+                val text = editView.edit_id.text.toString()
                 characteristic.setValue(text)
                 ble?.writeCharacteristic(characteristic)
             })

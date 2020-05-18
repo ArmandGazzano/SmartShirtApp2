@@ -56,7 +56,7 @@
     <string name="_lecture">LECTURE</string>
     <string name="ecrire">ECRIRE</string>
     <string name="notifier">NOTIFIER</string>
-    <string name="entrez_une_valeur">Entrez une valeur</string>
+    <string name="entrez_une_valeur">Entrez la nouvelle valeur</string>
     <string name="type">Type :</string>
     <string name="taille">Taille :</string>
     <string name="poids">Poids :</string>
