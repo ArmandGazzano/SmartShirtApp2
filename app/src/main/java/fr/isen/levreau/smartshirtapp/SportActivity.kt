@@ -1,27 +1,14 @@
 package fr.isen.levreau.smartshirtapp
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothManager
-import android.bluetooth.le.ScanCallback
-import android.bluetooth.le.ScanResult
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
-import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_bluetooth.*
 import kotlinx.android.synthetic.main.activity_sport.*
-import kotlinx.android.synthetic.main.dlialog_bluetooth.view.*
 import java.io.File
 import java.io.InputStream
 import java.util.*
@@ -60,7 +47,7 @@ class SportActivity : AppCompatActivity() {
         ep_g_rouge.visibility = View.INVISIBLE
         danger.visibility = View.INVISIBLE
 
-        start.setOnClickListener {
+        commencer.setOnClickListener {
             readFromFile()
             main()
         }

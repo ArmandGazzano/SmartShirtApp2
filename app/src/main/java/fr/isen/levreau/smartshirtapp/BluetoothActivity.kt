@@ -1,26 +1,20 @@
 package fr.isen.levreau.smartshirtapp
 
-import android.Manifest
 import android.app.Activity
 import android.bluetooth.*
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_bluetooth.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -53,7 +47,7 @@ class BluetoothActivity : AppCompatActivity() {
                     //init scan
                     if (textView12.text == "Lancer le scan BLE") {
                         searchButton.setImageResource(android.R.drawable.ic_media_pause)
-                        textView12.text = getString(R.string.scanning)
+                        textView12.text = "Scan en cours ..."
                         initBLEScan()
                         initScan()
                     } else if (textView12.text == "Scan en cours ...") {
@@ -133,7 +127,7 @@ class BluetoothActivity : AppCompatActivity() {
     }
 
     private fun onDeviceClicked(device: BluetoothDevice) {
-        val intent = Intent(this, BluetoothDetails::class.java)
+        val intent = Intent(this, BluetoothDetails2::class.java)
         intent.putExtra("ble_device", device)
         Toast.makeText(this, device.address, Toast.LENGTH_SHORT).show()
         startActivity(intent)

@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.gazzano.androidtoolbox
 
 import android.app.AlertDialog
 import android.bluetooth.BluetoothGatt
@@ -20,6 +20,8 @@ import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder
+import fr.isen.levreau.smartshirtapp.BLEService
+import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.bluetooth_characteristic_cell.view.*
 import kotlinx.android.synthetic.main.bluetooth_details_cell.view.*
 import kotlinx.android.synthetic.main.dlialog_bluetooth.view.*

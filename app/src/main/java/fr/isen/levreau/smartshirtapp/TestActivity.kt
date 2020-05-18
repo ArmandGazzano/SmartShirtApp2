@@ -12,13 +12,12 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_bluetooth.*
-import kotlinx.android.synthetic.main.activity_bluetooth_details.*
 import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : AppCompatActivity() {
+
+    private var firstTime = true
 
     private lateinit var handler: Handler
     private var mScanning: Boolean = false
@@ -39,6 +38,9 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
+
+
+        firstTime = true
 
         test_button.setOnClickListener {
             when {
@@ -123,47 +125,58 @@ class TestActivity : AppCompatActivity() {
     }
 
     private val gattCallback = object : BluetoothGattCallback() {
-        override fun onConnectionStateChange(
-            gatt: BluetoothGatt,
-            status: Int,
-            newState: Int
-        ) {
-            when (newState) {
-                BluetoothProfile.STATE_CONNECTED -> {
-                    runOnUiThread {
-                        //connectionState.text = STATE_CONNECTED
-                        //name.text = device?.name
+            override fun onConnectionStateChange(
+                gatt: BluetoothGatt,
+                status: Int,
+                newState: Int
+            ) {
+                when (newState) {
+                    BluetoothProfile.STATE_CONNECTED -> {
+                        runOnUiThread {
+                            //connectionState.text = STATE_CONNECTED
+                            //name.text = device?.name
+                        }
+                        bluetoothGatt?.discoverServices()
+                        Log.i(TAG, "Connected to GATT")
                     }
-                    bluetoothGatt?.discoverServices()
-                    Log.i(TAG, "Connected to GATT")
-                }
-                BluetoothProfile.STATE_DISCONNECTED -> {
-                    runOnUiThread {
-                        //connectionState.text = STATE_DISCONNECTED
+                    BluetoothProfile.STATE_DISCONNECTED -> {
+                        runOnUiThread {
+                            //connectionState.text = STATE_DISCONNECTED
+                        }
+                        Log.i(TAG, "Disconnected from GATT")
                     }
-                    Log.i(TAG, "Disconnected from GATT")
                 }
             }
-        }
 
-        override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
-            super.onServicesDiscovered(gatt, status)
+            override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
+                super.onServicesDiscovered(gatt, status)
 
-            if (gatt != null) {
-                setCharacteristicNotificationInternal(
-                    gatt,
-                    gatt.services[2].characteristics[1],
-                    true
-                )
-                Log.e(
-                    "TAG",
-                    "Services : actif"
-                )
+                if (gatt != null && firstTime) {
+                    firstTime = false
+                    setCharacteristicNotificationInternal(
+                        gatt,
+                        gatt.services[2].characteristics[3],
+                        true
+                    )
+                    setCharacteristicNotificationInternal(
+                        gatt,
+                        gatt.services[2].characteristics[2],
+                        true
+                    )
+                    setCharacteristicNotificationInternal(
+                        gatt,
+                        gatt.services[2].characteristics[1],
+                        true
+                    )
+                    Log.e(
+                        "TAG",
+                        "Services : actif"
+                    )
+                }
+                runOnUiThread {
+
+                }
             }
-            runOnUiThread {
-
-            }
-        }
 
         override fun onCharacteristicRead(
             gatt: BluetoothGatt?,
@@ -200,17 +213,14 @@ class TestActivity : AppCompatActivity() {
             characteristic: BluetoothGattCharacteristic
         ) {
             val value = byteArrayToHexString(characteristic.value)
-            Log.e(
-                "TAG",
-                "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString()
-            )
+            Log.e("TAG", "onCharacteristicChanged")
+            if (gatt != null) {
+                Log.e("test", value)
+                // + " / y : " + byteArrayToHexString(gatt.services[2].characteristics[2].value) +
+                //" / z : " + byteArrayToHexString(gatt.services[2].characteristics[3].value),
+            }
             runOnUiThread {
-                if (gatt != null) {
-                    Toast.makeText(applicationContext,gatt.services[2].characteristics[1].value.toString() ,Toast.LENGTH_SHORT
-                    ).show()
-                    // + " / y : " + byteArrayToHexString(gatt.services[2].characteristics[2].value) +
-                                //" / z : " + byteArrayToHexString(gatt.services[2].characteristics[3].value),
-                }
+                Log.e("TAG", "ALED")
             }
         }
     }
@@ -223,6 +233,10 @@ class TestActivity : AppCompatActivity() {
         }
         result.setLength(result.length - 1) // remove last '-'
         return result.toString()
+    }
+
+    fun notif() {
+
     }
 
     private fun setCharacteristicNotificationInternal(
@@ -258,6 +272,5 @@ class TestActivity : AppCompatActivity() {
     companion object {
         private const val SCAN_PERIOD: Long = 60000
         private const val REQUEST_ENABLE_BT = 44
-        private const val STATE_DISCONNECTED = "Statut : Déconnecté"
     }
 }

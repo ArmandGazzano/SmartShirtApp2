@@ -12,7 +12,10 @@ import kotlinx.android.synthetic.main.activity_bluetooth_details.*
 import kotlinx.android.synthetic.main.activity_bluetooth_details.bas_gris
 import kotlinx.android.synthetic.main.activity_bluetooth_details.bas_rouge
 import kotlinx.android.synthetic.main.activity_bluetooth_details.cache
+import kotlinx.android.synthetic.main.activity_bluetooth_details.commencer
+import kotlinx.android.synthetic.main.activity_bluetooth_details.connectionState
 import kotlinx.android.synthetic.main.activity_bluetooth_details.danger
+import kotlinx.android.synthetic.main.activity_bluetooth_details.detailsView
 import kotlinx.android.synthetic.main.activity_bluetooth_details.ep_d_gris
 import kotlinx.android.synthetic.main.activity_bluetooth_details.ep_d_rouge
 import kotlinx.android.synthetic.main.activity_bluetooth_details.ep_g_gris
@@ -21,11 +24,13 @@ import kotlinx.android.synthetic.main.activity_bluetooth_details.haut_gris
 import kotlinx.android.synthetic.main.activity_bluetooth_details.haut_rouge
 import kotlinx.android.synthetic.main.activity_bluetooth_details.milieu_gris
 import kotlinx.android.synthetic.main.activity_bluetooth_details.milieu_rouge
+import kotlinx.android.synthetic.main.activity_bluetooth_details.nameDevice
 import kotlinx.android.synthetic.main.activity_bluetooth_details.tshirt
+import kotlinx.android.synthetic.main.activity_bluetooth_details2.*
 import java.util.*
 
 
-class BluetoothDetails : AppCompatActivity() {
+class BluetoothDetails2 : AppCompatActivity() {
 
     private var bluetoothGatt: BluetoothGatt? = null
     private var TAG: String = "services"
@@ -56,6 +61,7 @@ class BluetoothDetails : AppCompatActivity() {
         milieu_gris.visibility = View.INVISIBLE
         milieu_rouge.visibility = View.INVISIBLE
         danger.visibility = View.INVISIBLE
+        rouge.visibility = View.INVISIBLE
 
         val device: BluetoothDevice = intent.getParcelableExtra("ble_device")
         nameDevice.text = device.name
@@ -64,11 +70,6 @@ class BluetoothDetails : AppCompatActivity() {
         commencer.setOnClickListener {
             tshirt.visibility = View.VISIBLE
             cache.visibility = View.VISIBLE
-            bas_gris.visibility = View.VISIBLE
-            haut_gris.visibility = View.VISIBLE
-            milieu_gris.visibility = View.VISIBLE
-            ep_d_gris.visibility = View.VISIBLE
-            ep_g_gris.visibility = View.VISIBLE
         }
     }
 
@@ -108,8 +109,8 @@ class BluetoothDetails : AppCompatActivity() {
                             it.characteristics
                         )
                     }?.toMutableList() ?: arrayListOf()
-                , this@BluetoothDetails, gatt)
-                detailsView.layoutManager = LinearLayoutManager(this@BluetoothDetails)
+                    , this@BluetoothDetails2, gatt)
+                detailsView.layoutManager = LinearLayoutManager(this@BluetoothDetails2)
             }
         }
 
@@ -174,14 +175,10 @@ class BluetoothDetails : AppCompatActivity() {
             }
             println("$a1 , $a2 , $a3")
 
-            if (a1 > 100 || a2 > 100 || a3 > 260){
+            if (a1 > 50 || a2 > 50 || a3 > 260){
                 var t = 0
                 danger.visibility = View.VISIBLE
-                ep_d_rouge.visibility = View.VISIBLE
-                ep_g_rouge.visibility = View.VISIBLE
-                haut_rouge.visibility = View.VISIBLE
-                milieu_rouge.visibility = View.VISIBLE
-                bas_rouge.visibility = View.VISIBLE
+                rouge.visibility = View.VISIBLE
 
                 do {
                     t += 1
@@ -189,11 +186,7 @@ class BluetoothDetails : AppCompatActivity() {
                 } while (t < 100000)
             }
             danger.visibility = View.INVISIBLE
-            ep_d_rouge.visibility = View.INVISIBLE
-            ep_g_rouge.visibility = View.INVISIBLE
-            haut_rouge.visibility = View.INVISIBLE
-            milieu_rouge.visibility = View.INVISIBLE
-            bas_rouge.visibility = View.INVISIBLE
+            rouge.visibility = View.INVISIBLE
             runOnUiThread {
                 detailsView.adapter?.notifyDataSetChanged()
             }
