@@ -127,7 +127,7 @@ class BluetoothDetails2 : AppCompatActivity() {
             val value = "Valeur : $dec "
             Log.e(
                 "TAG",
-                "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString()
+                "onCharacteristicChanged: " + value + "hex : " + hex + " UUID " + characteristic.uuid.toString()
             )
 
             count += 1
