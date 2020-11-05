@@ -121,15 +121,18 @@ class BluetoothDetails2 : AppCompatActivity() {
             characteristic: BluetoothGattCharacteristic
         ) {
             val hex = characteristic.value.joinToString("") { byte -> "%02x".format(byte)}.toUpperCase(Locale.FRANCE)
-            //val value = "Valeur : ${String(it)} Hex : 0x$hex"
-            val dec = Integer.parseInt(hex,16)
+            val value = "Valeur : $hex"
+
+            //val dec = Integer.parseInt(hex,16)
             //val nb_m = 0.1 * dec;
-            val value = "Valeur : $dec "
+            //val value = "Valeur : $dec "
+
             Log.e(
                 "TAG",
                 "onCharacteristicChanged: " + value + "hex : " + hex + " UUID " + characteristic.uuid.toString()
             )
 
+            /*
             count += 1
             when (characteristic.uuid) {
                 UUID.fromString("466c9abc-f593-11e8-8eb2-f2801f1b9fd1") -> {
@@ -159,6 +162,8 @@ class BluetoothDetails2 : AppCompatActivity() {
             }
             //atten.visibility = View.INVISIBLE
             points.visibility = View.INVISIBLE
+             */
+
             runOnUiThread {
                 detailsView.adapter?.notifyDataSetChanged()
             }
