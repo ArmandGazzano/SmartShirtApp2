@@ -141,8 +141,8 @@ class BluetoothDetailsAdapter(
         if (characteristic.value != null) {
             val hex = characteristic.value.joinToString("") { byte -> "%02x".format(byte)}.toUpperCase(Locale.FRANCE)
             //val value = "Valeur : ${String(it)} Hex : 0x$hex"
-            val dec = Integer.parseInt(hex,16)
-            holder.valueBle.text =  "Valeur : $dec"
+            //val dec = Integer.parseInt(hex,16)
+            holder.valueBle.text =  "Valeur : $hex"
         } else {
             holder.valueBle.text =  "Valeur : "
         }
