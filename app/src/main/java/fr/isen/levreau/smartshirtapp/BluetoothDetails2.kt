@@ -18,13 +18,6 @@ class BluetoothDetails2 : AppCompatActivity() {
     private var bluetoothGatt: BluetoothGatt? = null
     private var TAG: String = "services"
     private lateinit var adapter: BluetoothDetailsAdapter
-    var a = 0
-    var b = 0
-    var c = 0
-    var a1 = 0
-    var a2 = 0
-    var a3 = 0
-    var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,38 +126,6 @@ class BluetoothDetails2 : AppCompatActivity() {
                 "TAG",
                 "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString() + " x : "
             )
-
-            /*
-            count += 1
-            when (characteristic.uuid) {
-                UUID.fromString("466c9abc-f593-11e8-8eb2-f2801f1b9fd1") -> {
-                    a1 = abs(dec) - abs(a)
-                    a = dec
-                }
-                UUID.fromString("466c1268-f593-11e8-8eb2-f2801f1b9fd1") -> {
-                    a2 = abs(dec) - abs(b)
-                    b = dec
-                }
-                UUID.fromString("466c3256-f593-11e8-8eb2-f2801f1b9fd1") -> {
-                    a3 = abs(dec) - abs(c)
-                    c = dec
-                }
-            }
-            println("$a1 , $a2 , $a3")
-
-            if (a1 > 15 || a2 > 15 || a3 > 15){
-                var t = 0
-                //atten.visibility = View.VISIBLE
-                //points.visibility = View.VISIBLE
-
-                do {
-                    t += 1
-                    println("attention")
-                } while (t < 100000)
-            }
-            //atten.visibility = View.INVISIBLE
-            points.visibility = View.INVISIBLE
-             */
 
             runOnUiThread {
                 detailsView.adapter?.notifyDataSetChanged()
