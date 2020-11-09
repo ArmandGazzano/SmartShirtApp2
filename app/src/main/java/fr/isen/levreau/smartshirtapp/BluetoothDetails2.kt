@@ -114,17 +114,16 @@ class BluetoothDetails2 : AppCompatActivity() {
             characteristic: BluetoothGattCharacteristic
         ) {
             val hex = characteristic.value.joinToString("") { byte -> "%02x".format(byte)}.toUpperCase(Locale.FRANCE)
-            val value = "Valeur : $hex"
 
             //val x = hex[0] + hex[1] + hex[2] + hex[3]
 
             //val dec = Integer.parseInt(hex,16)
             //val nb_m = 0.1 * dec;
-            //val value = "Valeur : $hex "
+            val value = "Valeur : $hex "
 
             Log.e(
                 "TAG",
-                "onCharacteristicChanged: " + value + " UUID " + characteristic.uuid.toString() + " x : "
+                "onCharacteristicChanged: " + hex + " UUID " + characteristic.uuid.toString()
             )
 
             runOnUiThread {
