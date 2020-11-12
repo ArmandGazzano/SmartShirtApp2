@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.gazzano.androidtoolbox.BluetoothDetailsAdapter
 import kotlinx.android.synthetic.main.activity_bluetooth_details2.*
+import java.lang.Math.pow
 import java.util.*
 import kotlin.math.abs
 
@@ -115,15 +116,19 @@ class BluetoothDetails2 : AppCompatActivity() {
         ) {
             val hex = characteristic.value.joinToString("") { byte -> "%02x".format(byte)}.toUpperCase(Locale.FRANCE)
 
-            //val x = hex[0] + hex[1] + hex[2] + hex[3]
+            val x = hex.subSequence(0,4)
+            val y = hex.subSequence(4,8)
+            val z = hex.subSequence(8,12)
 
-            //val dec = Integer.parseInt(hex,16)
-            //val nb_m = 0.1 * dec;
+            val xx = test(Integer.parseInt(x.toString(),16))
+            val yy = test(Integer.parseInt(y.toString(),16))
+            val zz = test(Integer.parseInt(z.toString(),16))
+
             val value = "Valeur : $hex "
 
             Log.e(
                 "TAG",
-                "onCharacteristicChanged: " + hex + " UUID " + characteristic.uuid.toString()
+                "onCharacteristicChanged: $hex" // x:$x y:$y z:$z X:$xx Y:$yy Z:$zz"
             )
 
             runOnUiThread {
@@ -140,6 +145,14 @@ class BluetoothDetails2 : AppCompatActivity() {
         }
         result.setLength(result.length - 1) // remove last '-'
         return result.toString()
+    }
+
+    private fun test(num: Int): Double {
+        var x = num
+        if (x > 32768) {
+            x -= 65536
+        }
+        return x * 0.122
     }
 
     override fun onStop() {
