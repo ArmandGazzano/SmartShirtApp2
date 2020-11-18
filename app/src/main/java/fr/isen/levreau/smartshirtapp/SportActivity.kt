@@ -40,7 +40,7 @@ class SportActivity : AppCompatActivity() {
         })
         dialog.show()
 
-        commencer.setOnClickListener {
+        disconnect_button.setOnClickListener {
             readFromFile()
             main()
         }

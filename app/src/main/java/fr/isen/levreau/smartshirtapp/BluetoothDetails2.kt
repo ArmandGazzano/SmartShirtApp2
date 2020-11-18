@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.gazzano.androidtoolbox.BluetoothDetailsAdapter
 import kotlinx.android.synthetic.main.activity_bluetooth_details2.*
-import java.lang.Math.pow
 import java.util.*
-import kotlin.math.abs
 
 
 class BluetoothDetails2 : AppCompatActivity() {
@@ -30,10 +28,10 @@ class BluetoothDetails2 : AppCompatActivity() {
         atten.visibility = View.INVISIBLE
 
         val device: BluetoothDevice = intent.getParcelableExtra("ble_device")
-        nameDevice.text = device.name
+        device_name.text = device.name
         bluetoothGatt = device.connectGatt(this, true, gattCallback)
 
-        commencer.setOnClickListener {
+        disconnect_button.setOnClickListener {
             t_shirt.visibility = View.VISIBLE
             cache.visibility = View.VISIBLE
         }
@@ -50,7 +48,7 @@ class BluetoothDetails2 : AppCompatActivity() {
             when (newState) {
                 BluetoothProfile.STATE_CONNECTED -> {
                     runOnUiThread {
-                        connectionState.text = STATE_CONNECTED
+                        device_statut.text = STATE_CONNECTED
                         //name.text = device?.name
                     }
                     bluetoothGatt?.discoverServices()
@@ -58,7 +56,7 @@ class BluetoothDetails2 : AppCompatActivity() {
                 }
                 BluetoothProfile.STATE_DISCONNECTED -> {
                     runOnUiThread {
-                        connectionState.text = STATE_DISCONNECTED
+                        device_statut.text = STATE_DISCONNECTED
                     }
                     Log.i(TAG, "Disconnected from GATT")
                 }
@@ -74,8 +72,8 @@ class BluetoothDetails2 : AppCompatActivity() {
                             it.uuid.toString(),
                             it.characteristics
                         )
-                    }?.toMutableList() ?: arrayListOf()
-                    , this@BluetoothDetails2, gatt)
+                    }?.toMutableList() ?: arrayListOf(), this@BluetoothDetails2, gatt
+                )
                 detailsView.layoutManager = LinearLayoutManager(this@BluetoothDetails2)
             }
         }
@@ -114,21 +112,22 @@ class BluetoothDetails2 : AppCompatActivity() {
             gatt: BluetoothGatt?,
             characteristic: BluetoothGattCharacteristic
         ) {
-            val hex = characteristic.value.joinToString("") { byte -> "%02x".format(byte)}.toUpperCase(Locale.FRANCE)
+            val hex = characteristic.value.joinToString("") { byte -> "%02x".format(byte) }
+                .toUpperCase(Locale.FRANCE)
 
-            val x = hex.subSequence(0,4)
-            val y = hex.subSequence(4,8)
-            val z = hex.subSequence(8,12)
+            val x = hex.subSequence(0, 4)
+            val y = hex.subSequence(4, 8)
+            val z = hex.subSequence(8, 12)
 
-            val xx = test(Integer.parseInt(x.toString(),16))
-            val yy = test(Integer.parseInt(y.toString(),16))
-            val zz = test(Integer.parseInt(z.toString(),16))
+            val xx = test(Integer.parseInt(x.toString(), 16))
+            val yy = test(Integer.parseInt(y.toString(), 16))
+            val zz = test(Integer.parseInt(z.toString(), 16))
 
             val value = "Valeur : $hex "
 
             Log.e(
                 "TAG",
-                "onCharacteristicChanged: $hex" // x:$x y:$y z:$z X:$xx Y:$yy Z:$zz"
+                "onCharacteristicChanged: $hex X:$xx Y:$yy Z:$zz" + " UUID " + characteristic.uuid.toString()
             )
 
             runOnUiThread {
@@ -139,7 +138,7 @@ class BluetoothDetails2 : AppCompatActivity() {
 
     private fun byteArrayToHexString(array: ByteArray): String {
         val result = StringBuilder(array.size * 2)
-        for ( byte in array ) {
+        for (byte in array) {
             val toAppend = String.format("%X", byte) // hexadecimal
             result.append(toAppend).append("-")
         }

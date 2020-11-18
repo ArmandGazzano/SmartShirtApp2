@@ -130,7 +130,6 @@ class BluetoothDetailsAdapter(
             holder.buttonNotify.visibility = View.VISIBLE
         }
 
-
         val uuid = characteristic.uuid
         val name = propertyName(uuid)
 

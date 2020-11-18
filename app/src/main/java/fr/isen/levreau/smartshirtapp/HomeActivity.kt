@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
 
         mItent.add(Intent(this, BluetoothActivity::class.java))
         mItent.add(Intent(this, CalibrationActivity::class.java))
-        mItent.add(Intent(this, FollowupActivity::class.java))
+        mItent.add(Intent(this, FollowupActivity2::class.java))
         mItent.add(Intent(this, CompoteActivity::class.java))
 
         recyclerView.layoutManager= LinearLayoutManager(this, HORIZONTAL, false)
