@@ -6,16 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="22dp"
-        android:contentDescription="@string/red"
-        app:layout_constraintBottom_toBottomOf="@+id/rssiBT"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rssiBT"
-        app:srcCompat="@drawable/rssiback" />
+
 
     <TextView
         android:id="@+id/rssiBT"

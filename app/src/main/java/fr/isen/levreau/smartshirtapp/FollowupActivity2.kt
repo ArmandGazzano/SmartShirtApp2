@@ -2,13 +2,11 @@ package fr.isen.levreau.smartshirtapp
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
-import com.jjoe64.graphview.GraphView
+import com.google.firebase.database.FirebaseDatabase
 import com.jjoe64.graphview.LegendRenderer
-import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import kotlinx.android.synthetic.main.activity_followup2.*

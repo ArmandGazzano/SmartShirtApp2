@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.FirebaseDatabase
 import fr.isen.gazzano.androidtoolbox.BluetoothDetailsAdapter
 import kotlinx.android.synthetic.main.activity_bluetooth_details2.*
 import java.util.*
@@ -27,9 +28,9 @@ class BluetoothDetails2 : AppCompatActivity() {
         points.visibility = View.INVISIBLE
         atten.visibility = View.INVISIBLE
 
-        val device: BluetoothDevice = intent.getParcelableExtra("ble_device")
-        device_name.text = device.name
-        bluetoothGatt = device.connectGatt(this, true, gattCallback)
+        val device: BluetoothDevice? = intent.getParcelableExtra("ble_device")
+        device_name.text = device?.name
+        bluetoothGatt = device?.connectGatt(this, true, gattCallback)
 
         disconnect_button.setOnClickListener {
             t_shirt.visibility = View.VISIBLE

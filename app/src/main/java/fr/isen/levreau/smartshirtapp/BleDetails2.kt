@@ -2,22 +2,27 @@ package fr.isen.levreau.smartshirtapp
 
 import android.bluetooth.*
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import com.jjoe64.graphview.LegendRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import kotlinx.android.synthetic.main.activity_ble_details2.*
 import kotlinx.android.synthetic.main.activity_ble_details2.graph
 import kotlinx.android.synthetic.main.activity_followup2.*
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
+
 
 class BleDetails2 : AppCompatActivity() {
 
     private var bluetoothGatt: BluetoothGatt? = null
     private var TAG = "MyActivity"
     var notifier = false
+    var count = 0
 
     lateinit var xSeries: LineGraphSeries<DataPoint>
     lateinit var ySeries: LineGraphSeries<DataPoint>
@@ -28,9 +33,9 @@ class BleDetails2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ble_details2)
 
-        val device: BluetoothDevice = intent.getParcelableExtra("ble_device")
-        device_name.text = device.name ?: "Unnamed"
-        bluetoothGatt = device.connectGatt(this, false, gattCallback)
+        val device: BluetoothDevice? = intent.getParcelableExtra("ble_device")
+        device_name.text = device?.name ?: "Unnamed"
+        bluetoothGatt = device?.connectGatt(this, false, gattCallback)
 
         disconnect_button.setOnClickListener {
             BluetoothProfile.STATE_DISCONNECTED;
@@ -44,12 +49,20 @@ class BleDetails2 : AppCompatActivity() {
             if (!notifier){
                 notifier = true
                 if (bluetoothGatt != null) {
-                    setCharacteristicNotificationInternal(bluetoothGatt , bluetoothGatt?.services?.get(2)?.characteristics?.get(1), true)
+                    setCharacteristicNotificationInternal(
+                        bluetoothGatt, bluetoothGatt?.services?.get(
+                            2
+                        )?.characteristics?.get(1), true
+                    )
                 }
             } else {
                 notifier = false
                 if (bluetoothGatt != null) {
-                    setCharacteristicNotificationInternal(bluetoothGatt , bluetoothGatt?.services?.get(2)?.characteristics?.get(1), false)
+                    setCharacteristicNotificationInternal(
+                        bluetoothGatt, bluetoothGatt?.services?.get(
+                            2
+                        )?.characteristics?.get(1), false
+                    )
                 }
             }
         }
@@ -153,6 +166,20 @@ class BleDetails2 : AppCompatActivity() {
             val xx = test(Integer.parseInt(x.toString(), 16))
             val yy = test(Integer.parseInt(y.toString(), 16))
             val zz = test(Integer.parseInt(z.toString(), 16))
+
+            //BDD
+            val database = FirebaseDatabase.getInstance()
+            val myRef = database.getReference("data")
+            var test = DatabaseValue(xx.toString(), yy.toString(), zz.toString())
+
+            //BDD
+            val yourmilliseconds = Calendar.getInstance().timeInMillis
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS", Locale.US)
+            val calendar = GregorianCalendar(TimeZone.getTimeZone("US/Central"))
+            calendar.timeInMillis = yourmilliseconds
+
+            myRef.child(sdf.format(calendar.time).toString()).setValue(test)
+
 
             runOnUiThread {
                 graphLastXValue += 1.0

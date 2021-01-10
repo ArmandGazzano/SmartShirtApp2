@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1040795747633",
+    "project_id": "smartshirt-747f5",
+    "storage_bucket": "smartshirt-747f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040795747633:android:d965592f2beac14ced1c10",
+        "android_client_info": {
+          "package_name": "fr.isen.levreau.smartshirtapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040795747633-ocf0sl2s6jhq40420sdrfsopo84m55mo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArpnyF7r9Gdffi5p9sVIc4hLyqkjuHOW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040795747633-ocf0sl2s6jhq40420sdrfsopo84m55mo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
