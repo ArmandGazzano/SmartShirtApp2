@@ -18,19 +18,19 @@
         android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BleDetails2"></activity>
-        <activity android:name=".FollowupActivity2" />
-        <activity android:name=".CompoteActivity" />
-        <activity android:name=".FollowupActivity" />
+        <activity android:name=".bluetooth.BleDetails2"></activity>
+        <activity android:name=".bdd.FollowupActivity2" />
+        <activity android:name=".menu.CompoteActivity" />
+        <activity android:name=".bdd.FollowupActivity" />
         <activity android:name=".CalibrationActivity" />
-        <activity android:name=".BluetoothDetails2" />
+        <activity android:name=".bluetooth.BluetoothDetails2" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".BluetoothActivity" />
+        <activity android:name=".bluetooth.BluetoothActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".SportActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".InscriptionActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".menu.HomeActivity" />
+        <activity android:name=".menu.InscriptionActivity" />
+        <activity android:name=".menu.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.bdd
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,6 +7,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper.HORIZONTAL
+import fr.isen.levreau.smartshirtapp.EvolutionAdapter
+import fr.isen.levreau.smartshirtapp.R
+import fr.isen.levreau.smartshirtapp.SeanceAdapter
+import fr.isen.levreau.smartshirtapp.menu.HomeActivity
 import kotlinx.android.synthetic.main.activity_followup.*
 
 class FollowupActivity : AppCompatActivity() {

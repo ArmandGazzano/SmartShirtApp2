@@ -12,6 +12,8 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import fr.isen.levreau.smartshirtapp.bluetooth.BluetoothActivity
+import fr.isen.levreau.smartshirtapp.bluetooth.BluetoothDetails2
 import kotlinx.android.synthetic.main.activity_bluetooth.*
 import kotlinx.android.synthetic.main.activity_test.*
 

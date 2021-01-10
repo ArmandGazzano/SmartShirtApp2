@@ -1,16 +1,13 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.menu
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-import android.media.audiofx.DynamicsProcessing
 import android.os.Bundle
-import android.provider.ContactsContract.DisplayNameSources.EMAIL
-import android.provider.ContactsContract.Intents.Insert.EMAIL
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import fr.isen.levreau.smartshirtapp.Credentials.EMAIL
+import fr.isen.levreau.smartshirtapp.AppExecutors
+import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_inscription.*
 import javax.mail.*
 import javax.mail.internet.InternetAddress

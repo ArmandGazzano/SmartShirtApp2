@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.menu
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

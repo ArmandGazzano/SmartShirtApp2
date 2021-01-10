@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.bluetooth
 
 import android.app.Activity
 import android.bluetooth.*
@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_bluetooth.*
 import kotlin.collections.ArrayList
 

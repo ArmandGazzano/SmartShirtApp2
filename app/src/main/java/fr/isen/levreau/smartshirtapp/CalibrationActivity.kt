@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import fr.isen.levreau.smartshirtapp.menu.HomeActivity
 import kotlinx.android.synthetic.main.activity_calibration.*
 
 class CalibrationActivity : AppCompatActivity() {

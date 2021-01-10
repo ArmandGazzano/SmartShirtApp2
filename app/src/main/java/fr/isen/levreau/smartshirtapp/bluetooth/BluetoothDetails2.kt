@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.bluetooth
 
 
 import android.bluetooth.*
@@ -7,8 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.FirebaseDatabase
-import fr.isen.gazzano.androidtoolbox.BluetoothDetailsAdapter
+import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_bluetooth_details2.*
 import java.util.*
 

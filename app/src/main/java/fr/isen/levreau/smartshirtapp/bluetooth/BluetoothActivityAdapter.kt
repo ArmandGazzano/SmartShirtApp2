@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.bluetooth
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.le.ScanResult
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.bluetooth_cell.view.*
 
 class BluetoothActivityAdapter(

@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.bdd
 
 data class DatabaseValue(
     val x1: String,

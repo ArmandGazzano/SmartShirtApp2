@@ -1,4 +1,4 @@
-package fr.isen.gazzano.androidtoolbox
+package fr.isen.levreau.smartshirtapp.bluetooth
 
 import android.app.AlertDialog
 import android.bluetooth.BluetoothGatt
@@ -13,12 +13,10 @@ import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder
-import fr.isen.levreau.smartshirtapp.BLEService
 import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.bluetooth_characteristic_cell.view.*
 import kotlinx.android.synthetic.main.bluetooth_details_cell.view.*

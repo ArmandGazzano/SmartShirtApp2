@@ -3,6 +3,7 @@ package fr.isen.levreau.smartshirtapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import fr.isen.levreau.smartshirtapp.bluetooth.BluetoothActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {

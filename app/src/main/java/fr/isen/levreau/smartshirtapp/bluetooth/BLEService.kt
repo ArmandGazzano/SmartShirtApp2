@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.bluetooth
 
 import android.bluetooth.BluetoothGattCharacteristic
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup

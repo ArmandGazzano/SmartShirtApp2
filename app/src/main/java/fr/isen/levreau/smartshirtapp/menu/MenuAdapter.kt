@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.menu
 
 import android.content.Intent
 import android.view.LayoutInflater

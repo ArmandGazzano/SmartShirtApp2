@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.menu
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,6 +6,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper.HORIZONTAL
+import fr.isen.levreau.smartshirtapp.CalibrationActivity
+import fr.isen.levreau.smartshirtapp.bdd.FollowupActivity2
+import fr.isen.levreau.smartshirtapp.R
+import fr.isen.levreau.smartshirtapp.bluetooth.BluetoothActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 

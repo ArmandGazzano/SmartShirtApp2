@@ -1,4 +1,4 @@
-package fr.isen.levreau.smartshirtapp
+package fr.isen.levreau.smartshirtapp.menu
 
 import android.content.Context
 import android.content.DialogInterface
@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_compote.*
-import kotlinx.android.synthetic.main.activity_compote.view.*
-import kotlinx.android.synthetic.main.activity_compote_id.*
 import kotlinx.android.synthetic.main.activity_compote_id.view.*
 
 class CompoteActivity : AppCompatActivity() {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BluetoothDetails2">
+    tools:context=".bluetooth.BluetoothDetails2">
 
     <View
         android:id="@+id/dividerBle2"
