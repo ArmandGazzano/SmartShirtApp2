@@ -18,7 +18,7 @@
         android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".bluetooth.BleDetails2"></activity>
+        <activity android:name=".bluetooth.BleDetails2" />
         <activity android:name=".bdd.FollowupActivity2" />
         <activity android:name=".menu.CompoteActivity" />
         <activity android:name=".bdd.FollowupActivity" />

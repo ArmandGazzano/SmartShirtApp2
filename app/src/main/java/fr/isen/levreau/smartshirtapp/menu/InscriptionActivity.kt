@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import fr.isen.levreau.smartshirtapp.AppExecutors
 import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_inscription.*
@@ -20,6 +22,7 @@ class InscriptionActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
     lateinit var appExecutors: AppExecutors
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inscription)
@@ -32,6 +35,7 @@ class InscriptionActivity : AppCompatActivity() {
             val userId = id.text.toString()
             val userPassword = password.text.toString()
             saveCredentials(userId, userPassword)
+
             sendEmail()
             Toast.makeText(this, "Bienvenue $userId", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, HomeActivity::class.java)
@@ -78,27 +82,19 @@ class InscriptionActivity : AppCompatActivity() {
                 })
 
             try {
-                //Creating MimeMessage object
                 val mm = MimeMessage(session)
                 val emailId = mail.text.toString()
                 val name = name.text.toString()
                 val userId = id.text.toString()
                 val userPassword = password.text.toString()
 
-                //Setting sender address
                 mm.setFrom(InternetAddress(Credentials.EMAIL))
-                //Adding receiver
                 mm.addRecipient(
                     Message.RecipientType.TO,
                     InternetAddress(emailId))
-                //Adding subject
                 mm.subject = "Bienvenue sur l'application Smart-Shirt"
-                //Adding message
                 mm.setText("Merci d'avoir rejoint la team Smart-Shirt $name !\n\n Vos identifiants sont: \n - identifiant : $userId \n - mot de passe : $userPassword")
-
-                //Sending email
                 Transport.send(mm)
-
                 appExecutors.mainThread().execute {
                     //Something that should be executed on main thread.
                 }

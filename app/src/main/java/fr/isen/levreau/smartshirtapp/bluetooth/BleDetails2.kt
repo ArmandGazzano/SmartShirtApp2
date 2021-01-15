@@ -1,6 +1,8 @@
 package fr.isen.levreau.smartshirtapp.bluetooth
 
 import android.bluetooth.*
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +25,12 @@ class BleDetails2 : AppCompatActivity() {
     private var TAG = "MyActivity"
     var notifier = false
     var count = 0
+    private val KEY_ID = "id"
+    private val KEY_PASSWORD = "pass"
+    private val USER_PREFS = "user_prefs"
+    lateinit var sharedPreferences: SharedPreferences
+
+    lateinit var userID: String
 
     lateinit var xSeries: LineGraphSeries<DataPoint>
     lateinit var ySeries: LineGraphSeries<DataPoint>
@@ -32,6 +40,9 @@ class BleDetails2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ble_details2)
+
+        sharedPreferences = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE)
+        userID = sharedPreferences.getString(KEY_ID, "").toString()
 
         val device: BluetoothDevice? = intent.getParcelableExtra("ble_device")
         device_name.text = device?.name ?: "Unnamed"
@@ -172,13 +183,12 @@ class BleDetails2 : AppCompatActivity() {
             val myRef = database.getReference("data")
             var test = DatabaseValue(xx.toString(), yy.toString(), zz.toString())
 
-            //BDD
             val yourmilliseconds = Calendar.getInstance().timeInMillis
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS", Locale.US)
             val calendar = GregorianCalendar(TimeZone.getTimeZone("US/Central"))
             calendar.timeInMillis = yourmilliseconds
 
-            myRef.child(sdf.format(calendar.time).toString()).setValue(test)
+            myRef.child(userID).child(sdf.format(calendar.time).toString()).setValue(test)
 
 
             runOnUiThread {
