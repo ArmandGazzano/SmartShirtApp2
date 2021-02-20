@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_compote.*
 import kotlinx.android.synthetic.main.activity_compote_id.view.*
@@ -29,6 +30,7 @@ class CompoteActivity : AppCompatActivity() {
         id_user.text = GOOD_ID
 
         deco_button.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
             goToHome()
         }
 

@@ -1,13 +1,12 @@
 package fr.isen.levreau.smartshirtapp.menu
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
+import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import fr.isen.levreau.smartshirtapp.AppExecutors
 import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_inscription.*
@@ -16,10 +15,6 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 
 class InscriptionActivity : AppCompatActivity() {
-    private val KEY_ID = "id"
-    private val KEY_PASSWORD = "pass"
-    private val USER_PREFS = "user_prefs"
-    lateinit var sharedPreferences: SharedPreferences
     lateinit var appExecutors: AppExecutors
 
 
@@ -29,12 +24,44 @@ class InscriptionActivity : AppCompatActivity() {
 
         appExecutors = AppExecutors()
 
-        sharedPreferences = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE)
-
         validateButton.setOnClickListener {
+            when {
+                TextUtils.isEmpty(id.text.toString().trim { it <= ' '}) -> {
+                    Toast.makeText(this,"Email manquant",Toast.LENGTH_SHORT).show()
+                }
+
+                TextUtils.isEmpty(password.text.toString().trim { it <= ' '}) -> {
+                    Toast.makeText(this,"Mot de passe manquant",Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    val email: String = id.text.toString().trim { it <= ' ' }
+                    val password: String = id.text.toString().trim { it <= ' ' }
+
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val firebaseUser: FirebaseUser = task.result!!.user!!
+
+                                Toast.makeText(this, "Inscription réussi", Toast.LENGTH_SHORT)
+                                    .show()
+
+                                val intent = Intent(this, MainActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.putExtra("user_id", firebaseUser.uid)
+                                intent.putExtra("user_id", firebaseUser.uid)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(this, task.exception?.message.toString(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                }
+            }
+
+            /*
             val userId = id.text.toString()
-            val userPassword = password.text.toString()
-            saveCredentials(userId, userPassword)
 
             sendEmail()
             Toast.makeText(this, "Bienvenue $userId", Toast.LENGTH_SHORT).show()
@@ -42,19 +69,13 @@ class InscriptionActivity : AppCompatActivity() {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
+             */
 
         }
 
         back_to_home.setOnClickListener {
             goToHome()
         }
-    }
-
-    private fun saveCredentials(id: String, pass: String) {
-        val editor = sharedPreferences.edit()
-        editor.putString(KEY_ID, id)
-        editor.putString(KEY_PASSWORD, pass)
-        editor.apply()
     }
 
     private fun goToHome() {
