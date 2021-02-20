@@ -25,7 +25,7 @@
         android:text="Mot de passe"
         android:textColor="#FF0000"
         app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/id" />
+        app:layout_constraintTop_toBottomOf="@+id/mail" />
 
     <TextView
         android:id="@+id/textView4"
@@ -36,16 +36,6 @@
         android:textColor="#FF0000"
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/inscrip_title" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Identifiant"
-        android:textColor="#FF0000"
-        app:layout_constraintStart_toStartOf="@+id/id"
-        app:layout_constraintTop_toBottomOf="@+id/mail" />
 
     <TextView
         android:id="@+id/inscrip_title"
@@ -81,19 +71,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/name"
