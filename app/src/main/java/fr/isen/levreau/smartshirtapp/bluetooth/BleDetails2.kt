@@ -24,10 +24,6 @@ class BleDetails2 : AppCompatActivity() {
     private var bluetoothGatt: BluetoothGatt? = null
     private var TAG = "MyActivity"
     var notifier = false
-    var count = 0
-    private val KEY_ID = "id"
-    private val KEY_PASSWORD = "pass"
-    private val USER_PREFS = "user_prefs"
     lateinit var sharedPreferences: SharedPreferences
 
     lateinit var userID: String
@@ -41,8 +37,8 @@ class BleDetails2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ble_details2)
 
-        sharedPreferences = getSharedPreferences(USER_PREFS, Context.MODE_PRIVATE)
-        userID = sharedPreferences.getString(KEY_ID, "").toString()
+        sharedPreferences = getSharedPreferences("user_id", Context.MODE_PRIVATE)
+        userID = sharedPreferences.getString("mail", "").toString()
 
         val device: BluetoothDevice? = intent.getParcelableExtra("ble_device")
         device_name.text = device?.name ?: "Unnamed"
@@ -101,6 +97,8 @@ class BleDetails2 : AppCompatActivity() {
         zSeries.color = Color.RED
         graph.legendRenderer.isVisible = true
         graph.legendRenderer.align = LegendRenderer.LegendAlign.TOP
+
+        graph.viewport.isScrollable = true // enables horizontal scrolling
     }
 
     private val gattCallback = object : BluetoothGattCallback() {

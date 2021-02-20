@@ -1,6 +1,8 @@
 package fr.isen.levreau.smartshirtapp.menu
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,7 +10,6 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import fr.isen.levreau.smartshirtapp.R
-import kotlinx.android.synthetic.main.activity_inscription.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,10 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val userId = intent.getStringExtra("user_id")
-        val emailId = intent.getStringExtra("email_id")
-
-        //FirebaseAuth.getInstance()
+        var sharedPreferences = getSharedPreferences("user_id", Context.MODE_PRIVATE)
 
         login_button.setOnClickListener {
             when {
@@ -34,6 +32,11 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     val email: String = login_id.text.toString().trim { it <= ' ' }
                     val password: String = login_mdp.text.toString().trim { it <= ' ' }
+
+                    val editor = sharedPreferences.edit()
+                    val mail = email.replace(".", " ")
+                    editor.putString("mail", mail)
+                    editor.apply()
 
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->

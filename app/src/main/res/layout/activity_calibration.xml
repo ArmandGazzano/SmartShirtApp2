@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="232dp"
         android:layout_height="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="32dp"
         android:text="Put your back straight against the wall please"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -23,20 +23,22 @@
         android:id="@+id/textScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
+        android:layout_marginBottom="32dp"
         android:text="Launch Calibration"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.212"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/image_dos"
-        android:layout_width="108dp"
-        android:layout_height="227dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/textScan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/position_dos" />
 
@@ -54,33 +56,34 @@
         android:id="@+id/textValider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
         android:text="This can take un few minutes ... "
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="390dp"
+        android:layout_width="0dp"
         android:layout_height="6dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
 
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:indeterminate="true"
         android:indeterminateDrawable="@android:color/background_light"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/textValider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textScan" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/cali_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Calibration"
         android:textAllCaps="true"
         android:textSize="18sp"
