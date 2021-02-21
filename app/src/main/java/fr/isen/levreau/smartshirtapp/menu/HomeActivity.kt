@@ -2,25 +2,35 @@ package fr.isen.levreau.smartshirtapp.menu
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper.HORIZONTAL
 import fr.isen.levreau.smartshirtapp.CalibrationActivity
-import fr.isen.levreau.smartshirtapp.bdd.FollowupActivity2
 import fr.isen.levreau.smartshirtapp.R
+import fr.isen.levreau.smartshirtapp.bdd.FollowupActivity2
 import fr.isen.levreau.smartshirtapp.bluetooth.BluetoothActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import java.security.KeyStore
+import javax.crypto.Cipher
+import javax.crypto.KeyGenerator
+import javax.crypto.SecretKey
 
 
 class HomeActivity : AppCompatActivity() {
 
     val mItent: ArrayList<Intent> = ArrayList()
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
 
         val choix: ArrayList<String> = ArrayList()
         choix.add("Nouvelle séance")

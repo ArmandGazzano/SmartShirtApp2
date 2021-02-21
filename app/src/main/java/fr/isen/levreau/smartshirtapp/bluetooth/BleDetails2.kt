@@ -4,13 +4,16 @@ import android.bluetooth.*
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.jjoe64.graphview.LegendRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import fr.isen.levreau.smartshirtapp.Crypto
 import fr.isen.levreau.smartshirtapp.bdd.DatabaseValue
 import fr.isen.levreau.smartshirtapp.R
 import kotlinx.android.synthetic.main.activity_ble_details2.*
@@ -159,6 +162,7 @@ class BleDetails2 : AppCompatActivity() {
 
         }
 
+        @RequiresApi(Build.VERSION_CODES.M)
         override fun onCharacteristicChanged(
             gatt: BluetoothGatt?,
             characteristic: BluetoothGattCharacteristic
@@ -177,9 +181,10 @@ class BleDetails2 : AppCompatActivity() {
             val zz = test(Integer.parseInt(z.toString(), 16))
 
             //BDD
+            val crypto = Crypto()
             val database = FirebaseDatabase.getInstance()
             val myRef = database.getReference("data")
-            var test = DatabaseValue(xx.toString(), yy.toString(), zz.toString())
+            val test = crypto.cipherCoordinates(DatabaseValue(xx.toString(), yy.toString(), zz.toString()))
 
             val yourmilliseconds = Calendar.getInstance().timeInMillis
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS", Locale.US)
