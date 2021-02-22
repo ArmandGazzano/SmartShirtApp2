@@ -35,6 +35,25 @@ class BleDetails2 : AppCompatActivity() {
     lateinit var zSeries: LineGraphSeries<DataPoint>
     private var graphLastXValue = -1.0
 
+    lateinit var x: CharSequence
+    lateinit var x2: CharSequence
+    lateinit var x3: CharSequence
+    lateinit var y: CharSequence
+    lateinit var y2: CharSequence
+    lateinit var y3: CharSequence
+    lateinit var z: CharSequence
+    lateinit var z2: CharSequence
+    lateinit var z3: CharSequence
+    var xx = 0.0
+    var xx2 = 0.0
+    var xx3 = 0.0
+    var yy = 0.0
+    var yy2 = 0.0
+    var yy3 = 0.0
+    var zz = 0.0
+    var zz2 = 0.0
+    var zz3 = 0.0
+
     var i_calibr = 0
     var x_calibr = 0.0
     var y_calibr = 0.0
@@ -66,7 +85,7 @@ class BleDetails2 : AppCompatActivity() {
         }
 
         notifiy_button.setOnClickListener {
-            if (!notifier){
+            if (!notifier) {
                 notifier = true
                 if (bluetoothGatt != null) {
                     setCharacteristicNotificationInternal(
@@ -186,13 +205,36 @@ class BleDetails2 : AppCompatActivity() {
                     Locale.FRANCE
                 )
 
-            val x = hex.subSequence(0, 4)
-            val y = hex.subSequence(4, 8)
-            val z = hex.subSequence(8, 12)
+            x = hex.subSequence(0, 4)
+            y = hex.subSequence(4, 8)
+            z = hex.subSequence(8, 12)
 
-            val xx = test(Integer.parseInt(x.toString(), 16))
-            val yy = test(Integer.parseInt(y.toString(), 16))
-            val zz = test(Integer.parseInt(z.toString(), 16))
+            xx = test(Integer.parseInt(x.toString(), 16))
+            yy = test(Integer.parseInt(y.toString(), 16))
+            zz = test(Integer.parseInt(z.toString(), 16))
+
+            x2 = hex.subSequence(12, 16)
+            y2 = hex.subSequence(16, 20)
+            z2 = hex.subSequence(20, 24)
+
+            xx2 = test(Integer.parseInt(x2.toString(), 16))
+            yy2 = test(Integer.parseInt(y2.toString(), 16))
+            zz2 = test(Integer.parseInt(z2.toString(), 16))
+
+            x3 = hex.subSequence(24, 28)
+            y3 = hex.subSequence(28, 32)
+            z3 = hex.subSequence(32, 36)
+
+            xx3 = test(Integer.parseInt(x2.toString(), 16))
+            yy3 = test(Integer.parseInt(y2.toString(), 16))
+            zz3 = test(Integer.parseInt(z2.toString(), 16))
+
+
+
+            Log.e(
+                "TAG",
+                "onCharacteristicChanged: X:$xx Y:$yy Z:$zz X2:$xx2 Y2:$yy2 Z2:$zz2 X3:$xx3 Y3:$yy3 Z:$zz3"
+            )
 
             //BDD
             val crypto = Crypto()
@@ -215,23 +257,20 @@ class BleDetails2 : AppCompatActivity() {
 
 
             runOnUiThread {
-                if (calibration){
+                if (calibration) {
                     calibr(xx, yy, zz)
+                    calibr(xx2,yy2,zz2)
+                    calibr(xx3,yy3,zz3)
                 } else {
                     graphLastXValue += 1.0
                     xSeries.appendData(DataPoint(graphLastXValue, xx), true, 40)
                     ySeries.appendData(DataPoint(graphLastXValue, yy), true, 40)
                     zSeries.appendData(DataPoint(graphLastXValue, zz), true, 40)
-                    mouvementEpauleDroite(xx, yy, zz)
-                    mouvementEpauleGauche(xx, yy, zz)
-                    mouvementDosHaut(xx, yy, zz)
+                    //mouvementEpauleDroite(xx, yy, zz)
+                    //mouvementEpauleGauche(xx3, yy3, zz3)
+                    mouvementDosHaut(xx2, yy2, zz2)
                 }
             }
-
-            Log.e(
-                "TAG",
-                "onCharacteristicChanged: $hex X:$xx Y:$yy Z:$zz" + " UUID " + characteristic.uuid.toString()
-            )
         }
     }
 
@@ -271,7 +310,7 @@ class BleDetails2 : AppCompatActivity() {
 
     fun calibr(x: Double, y: Double, z: Double) {
         if (i_calibr === 0) info.text = "Calibrage en cours..."
-        if (i_calibr < 50) {
+        if (i_calibr < 5) {
             x_calibr += x
             y_calibr += y
             z_calibr += z
@@ -359,25 +398,12 @@ class BleDetails2 : AppCompatActivity() {
     fun mouvementDosHaut(x: Double, y: Double, z: Double) {
         if (z_calibr + 50 <= z || z_calibr - 50 >= z) {
             if (z_calibr + 300 <= z) {
-                zcountplus++
-                zcountmoins = 0
+                info.text = "Haut du dos trop en avant"
+            } else if (z_calibr - 300 >= z) {
+                info.text = "Haut du dos trop en arrière"
+            } else {
+                info.text = "Haut du dos OK"
             }
-            if (z_calibr - 300 >= z) {
-                zcountmoins++
-                zcountplus = 0
-            }
-        } else {
-            normalcount++
-            ycountplus = 0
-            ycountmoins = 0
-            zcountplus = 0
-            zcountmoins = 0
-        }
-        if (zcountplus >= 7) info.text = "Haut du dos trop en avant"
-        if (zcountmoins >= 7) info.text = "Haut du dos trop en arrière"
-        if (normalcount >= 7) {
-            info.text = "Haut du dos OK"
-            normalcount = 0
         }
     }
 
