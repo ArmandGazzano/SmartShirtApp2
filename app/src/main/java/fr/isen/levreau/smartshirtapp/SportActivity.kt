@@ -40,7 +40,7 @@ class SportActivity : AppCompatActivity() {
         })
         dialog.show()
 
-        disconnect_button.setOnClickListener {
+        calibration_button.setOnClickListener {
             readFromFile()
             main()
         }

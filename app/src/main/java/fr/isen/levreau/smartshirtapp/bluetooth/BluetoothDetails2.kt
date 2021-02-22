@@ -31,7 +31,7 @@ class BluetoothDetails2 : AppCompatActivity() {
         device_name.text = device?.name
         bluetoothGatt = device?.connectGatt(this, true, gattCallback)
 
-        disconnect_button.setOnClickListener {
+        calibration_button.setOnClickListener {
             t_shirt.visibility = View.VISIBLE
             cache.visibility = View.VISIBLE
         }
