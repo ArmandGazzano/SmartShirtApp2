@@ -8,13 +8,11 @@ import androidx.annotation.RequiresApi
 import fr.isen.levreau.smartshirtapp.bdd.DatabaseValue
 import java.security.KeyStore
 import java.security.KeyStoreException
-import java.security.SecureRandom
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
-import javax.crypto.spec.IvParameterSpec
 
 
 class Crypto {
@@ -26,70 +24,89 @@ class Crypto {
 
         cipher.init(Cipher.ENCRYPT_MODE, key)
         val iv_x = cipher.iv.copyOf()
-        Log.i("crypto", "iv_x_cipher: $iv_x" )
-        Log.i("crypto", iv_x.size.toString())
-        Log.i("crypto", String(iv_x,Charsets.UTF_8).length.toString())
-        val x1 = String (cipher.doFinal(Coordinates.x1.toByteArray()))
-        val x2 = x1 + String(iv_x,Charsets.UTF_8)
+        val x1 = cipher.doFinal(Coordinates.x1.toByteArray())
+        val x2 = x1 + iv_x
+        val x3 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Base64.getEncoder().encodeToString(x2)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+
 
         cipher.init(Cipher.ENCRYPT_MODE, key)
         val iv_y = cipher.iv.copyOf()
-        val y1 = String.format("%02X",cipher.doFinal(Coordinates.y1.toByteArray()),Charsets.UTF_8)
-        val y2 = y1 + String.format("%02X",(iv_y),Charsets.UTF_8)
+        val y1 = cipher.doFinal(Coordinates.y1.toByteArray())
+        val y2: ByteArray = y1 + iv_y
+        val y3 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Base64.getEncoder().encodeToString(y2)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+
+
         cipher.init(Cipher.ENCRYPT_MODE, key)
         val iv_z = cipher.iv.copyOf()
+        val z1 = cipher.doFinal(Coordinates.z1.toByteArray())
+        val z2 = z1 + iv_z
+        val z3 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Base64.getEncoder().encodeToString(z2)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
 
-        val z1 = String.format("%02X",cipher.doFinal(Coordinates.z1.toByteArray()))
-        val z2 = z1 + String.format("%02X",iv_z)
-        Log.i("crypto", "===========================")
-        Log.i("crypto", "===========================")
-        Log.i("crypto", "===========================")
-        return DatabaseValue(x2, y2, z2)
+        return DatabaseValue(x3, y3, z3)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun decipherCoordinates(Coordinates: DatabaseValue): DatabaseValue {
         val key = retrieveKey()
-        Log.i("crypto", "Test10")
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
-        Log.i("crypto", Coordinates.x1.length.toString())
-        val iv_x = Coordinates.x1.substring(Coordinates.x1.length-12,Coordinates.x1.length)
-        Log.i("crypto", "Test65")
-        val x1 = Coordinates.x1.substring(0,Coordinates.x1.length-12)
-        Log.i("crypto", "iv_x_decipher: $iv_x")
-        Log.i("crypto", iv_x.length.toString())
-        Log.i("crypto", iv_x.toByteArray().size.toString())
-        Log.i("crypto", iv_x.toByteArray().toString())
 
-        Log.i("crypto", x1)
-        Log.i("crypto", x1.length.toString())
-        Log.i("crypto", "===========================")
-        val spec_x = GCMParameterSpec(128, iv_x.toByteArray())
-        Log.i("crypto", "Test12")
+        val x1 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Base64.getDecoder().decode(Coordinates.x1)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+
+        val iv_x = x1.copyOfRange(x1.size - 12, x1.size)
+        val x2 = x1.copyOfRange(0, x1.size - 12)
+        val spec_x = GCMParameterSpec(128, iv_x)
         cipher.init(Cipher.DECRYPT_MODE, key, spec_x)
-        Log.i("crypto", "Test1")
-        val x2 = String(cipher.doFinal(x1.toByteArray()))
-        Log.i("crypto", "Test2")
+        val x3 = cipher.doFinal(x2).toString(charset("UTF-8"))
+        Log.i("crypto", "100dqzqzdqsdz : $x3")
 
 
 
 
+        val y1 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Base64.getDecoder().decode(Coordinates.y1)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
 
-        val iv_y = Coordinates.y1.substring(Coordinates.y1.length-12,Coordinates.y1.length)
-        val y1 = Coordinates.y1.substring(0,Coordinates.y1.length-12)
-        val spec_y = GCMParameterSpec(128, iv_y.toByteArray())
-        Log.i("crypto", "Test12")
+        val iv_y = y1.copyOfRange(y1.size - 12, y1.size)
+        val y2 = y1.copyOfRange(0, y1.size - 12)
+        val spec_y = GCMParameterSpec(128, iv_y)
         cipher.init(Cipher.DECRYPT_MODE, key, spec_y)
-        val y2 = String(cipher.doFinal(y1.toByteArray()))
-        Log.i("crypto", "Test3")
+        val y3 = cipher.doFinal(y2).toString(charset("UTF-8"))
+        Log.i("crypto", "0 : $y3")
 
-        val iv_z = Coordinates.y1.substring(Coordinates.z1.length-12,Coordinates.z1.length)
-        val z1 = Coordinates.y1.substring(0,Coordinates.z1.length-12)
-        val spec_z = GCMParameterSpec(128, iv_z.toByteArray())
+
+
+        val z1 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Base64.getDecoder().decode(Coordinates.z1)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+        val iv_z = z1.copyOfRange(z1.size - 12, z1.size)
+        val z2 = z1.copyOfRange(0, z1.size - 12)
+        val spec_z = GCMParameterSpec(128, iv_z)
         cipher.init(Cipher.DECRYPT_MODE, key, spec_z)
-        val z2 = String(cipher.doFinal(z1.toByteArray()))
+        val z3 = cipher.doFinal(z2).toString(charset("UTF-8"))
+        Log.i("crypto", "-100 : $z3")
 
-        return DatabaseValue(x2, y2, z2)
+
+        return DatabaseValue(x3, y3, z3)
     }
 
 
@@ -123,11 +140,5 @@ class Crypto {
         return keyStore.getKey("EncryptionKey", null) as SecretKey
     }
 
-    @Throws(KeyStoreException::class)
-    private fun getAllAliasesInTheKeystore(): ArrayList<String?>? {
-        val keyStore: KeyStore = KeyStore.getInstance("AndroidKeyStore")
-        keyStore.load(null)
-        return Collections.list(keyStore.aliases())
-    }
 
 }
