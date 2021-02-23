@@ -46,4 +46,5 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.firebaseui:firebase-ui-auth:7.1.1'
+    androidTestImplementation 'com.android.support:support-annotations:23.3.0'
 }

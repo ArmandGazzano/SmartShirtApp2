@@ -225,9 +225,9 @@ class BleDetails2 : AppCompatActivity() {
             y3 = hex.subSequence(28, 32)
             z3 = hex.subSequence(32, 36)
 
-            xx3 = test(Integer.parseInt(x2.toString(), 16))
-            yy3 = test(Integer.parseInt(y2.toString(), 16))
-            zz3 = test(Integer.parseInt(z2.toString(), 16))
+            xx3 = test(Integer.parseInt(x3.toString(), 16))
+            yy3 = test(Integer.parseInt(y3.toString(), 16))
+            zz3 = test(Integer.parseInt(z3.toString(), 16))
 
 
 
@@ -244,7 +244,13 @@ class BleDetails2 : AppCompatActivity() {
                 DatabaseValue(
                     xx.toString(),
                     yy.toString(),
-                    zz.toString()
+                    zz.toString(),
+                    xx2.toString(),
+                    yy2.toString(),
+                    zz2.toString(),
+                    xx3.toString(),
+                    yy3.toString(),
+                    zz3.toString()
                 )
             //     )
 
@@ -309,7 +315,7 @@ class BleDetails2 : AppCompatActivity() {
     }
 
     fun calibr(x: Double, y: Double, z: Double) {
-        if (i_calibr === 0) info.text = "Calibrage en cours..."
+        if (i_calibr == 0) info.text = "Calibrage en cours..."
         if (i_calibr < 5) {
             x_calibr += x
             y_calibr += y

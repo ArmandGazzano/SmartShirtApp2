@@ -7,13 +7,11 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import fr.isen.levreau.smartshirtapp.bdd.DatabaseValue
 import java.security.KeyStore
-import java.security.KeyStoreException
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
-
 
 class Crypto {
     @RequiresApi(Build.VERSION_CODES.M)
@@ -54,7 +52,7 @@ class Crypto {
             TODO("VERSION.SDK_INT < O")
         }
 
-        return DatabaseValue(x3, y3, z3)
+        return DatabaseValue(x3, y3, z3,x3, y3, z3,x3, y3, z3)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -76,8 +74,6 @@ class Crypto {
         Log.i("crypto", "100dqzqzdqsdz : $x3")
 
 
-
-
         val y1 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Base64.getDecoder().decode(Coordinates.y1)
         } else {
@@ -90,7 +86,6 @@ class Crypto {
         cipher.init(Cipher.DECRYPT_MODE, key, spec_y)
         val y3 = cipher.doFinal(y2).toString(charset("UTF-8"))
         Log.i("crypto", "0 : $y3")
-
 
 
         val z1 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -106,9 +101,8 @@ class Crypto {
         Log.i("crypto", "-100 : $z3")
 
 
-        return DatabaseValue(x3, y3, z3)
+        return DatabaseValue(x3, y3, z3,x3, y3, z3,x3, y3, z3)
     }
-
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -118,15 +112,15 @@ class Crypto {
         )
         Log.i("crypto", Build.VERSION.SDK_INT.toString())
         Log.i("crypto", Build.VERSION_CODES.R.toString())
-            keyGenerator.init(
-                KeyGenParameterSpec.Builder(
-                    "EncryptionKey",
-                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-                )
-                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                    .build()
+        keyGenerator.init(
+            KeyGenParameterSpec.Builder(
+                "EncryptionKey",
+                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
             )
+                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                .build()
+        )
         return keyGenerator.generateKey()
     }
 
@@ -134,11 +128,9 @@ class Crypto {
     private fun retrieveKey(): SecretKey {
         val keyStore: KeyStore = KeyStore.getInstance("AndroidKeyStore")
         keyStore.load(null)
-        if (Collections.list(keyStore.aliases()).toString() == "[]"){
+        if (Collections.list(keyStore.aliases()).toString() == "[]") {
             return generateSecretKey()
         }
         return keyStore.getKey("EncryptionKey", null) as SecretKey
     }
-
-
 }
